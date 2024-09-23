@@ -19,29 +19,18 @@ class MainActivity : ComponentActivity() {
         enableEdgeToEdge()
         setContent {
             TrackpadAppTheme {
-                Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
-                    Greeting(
-                        name = "Android",
-                        modifier = Modifier.padding(innerPadding)
-                    )
-                }
+                Trackpad()
             }
         }
     }
 }
 
 @Composable
-fun Greeting(name: String, modifier: Modifier = Modifier) {
-    Text(
-        text = "Hello $name!",
-        modifier = modifier
-    )
+fun Trackpad() {
 }
 
 @Preview(showBackground = true)
 @Composable
-fun GreetingPreview() {
-    TrackpadAppTheme {
-        Greeting("Android")
-    }
+fun TrackpadPreview() {
+    Trackpad()
 }
