@@ -30,10 +30,10 @@ def process_command(command):
         mouse.release(Button.right)
     
     elif action == "scroll_up":
-        mouse.scroll(0, -1)
+        mouse.scroll(0, -0.4)
 
     elif action == "scroll_down":
-        mouse.scroll(0, 1)
+        mouse.scroll(0, 0.4)
     else:
         print(f"Unknown command: {action}")
 
