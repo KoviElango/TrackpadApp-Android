@@ -1,50 +1,28 @@
-package com.example.trackpadapp
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
+import java.net.DatagramPacket
+import java.net.DatagramSocket
+import java.net.InetAddress
 
-import java.io.PrintWriter
-import java.net.Socket
-import kotlinx.coroutines.*
+class UDPManager {
+    private val socket = DatagramSocket()
 
-class SocketManager {
-    private var socket: Socket? = null
-    private var output: PrintWriter? = null
-
-    fun connect() {
+    // Use a coroutine to send the command asynchronously
+    fun sendCommand(command: String, serverIP: String, port: Int) {
         CoroutineScope(Dispatchers.IO).launch {
             try {
-                socket = Socket("10.0.0.125", 5050)
-                socket!!.soTimeout = 5000
-                output = PrintWriter(socket!!.getOutputStream(), true)
-                println("Connected to server")
-                sendCommand("test_command")
-            }
-            catch (e: Exception) {
-                e.printStackTrace()
-                println("Connection failed")
-            }
-        }
-    }
-
-    fun sendCommand(command: String) {
-        CoroutineScope(Dispatchers.IO).launch {
-            try {
-                output?.println(command)
-                output?.flush()
-                println("Command sent: $command")
+                val address = InetAddress.getByName(serverIP)
+                val data = command.toByteArray()
+                val packet = DatagramPacket(data, data.size, address, port)
+                socket.send(packet)
             } catch (e: Exception) {
                 e.printStackTrace()
             }
         }
     }
 
-    fun close(){
-        CoroutineScope(Dispatchers.IO).launch {
-            try {
-                output?.close()
-                socket?.close()
-            }
-            catch (e: Exception) {
-                e.printStackTrace()
-            }
-        }
+    fun close() {
+        socket.close()
     }
 }

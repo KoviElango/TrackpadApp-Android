@@ -1,28 +1,27 @@
-from pynput.mouse import Controller, Button
+from pynput.mouse import Controller
 
 # Mouse controller object
 mouse = Controller()
-move_distance = 10
 
-#all Basic mouse action function:
+# Move mouse by delta values (x and y)
 def mouse_movement(delta_x, delta_y):
     current_x, current_y = mouse.position
     new_x, new_y = current_x + delta_x, current_y + delta_y
     mouse.position = (new_x, new_y)
+    print(f"Mouse moved to: {mouse.position}")
 
-def single_click():
-    mouse.click(Button.left, 1)
+# Process incoming commands, e.g., "move 10 20"
+def process_command(command):
+    print(f"Processing command: {command}")
+    command_parts = command.split()
+    action = command_parts[0]
 
-def double_click():
-    mouse.click(Button.left, 2)
+    if action == "move":
+        # Use float() to handle decimal values for mouse movement
+        delta_x, delta_y = float(command_parts[1]), float(command_parts[2])
+        mouse_movement(delta_x, delta_y)
+        print(f"Mouse moved by ({delta_x}, {delta_y})")
+    else:
+        print(f"Unknown command: {action}")
 
-def right_click():
-    mouse.click(Button.right, 1)
 
-def scrolling(amount):
-     mouse.scroll(0, amount)
-
-def drag_and_drop(x,y):
-    mouse.press(Button.left)
-    mouse.position = (x, y)
-    mouse.release(Button.left)
