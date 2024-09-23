@@ -13,9 +13,11 @@ class SocketManager {
             try {
                 socket = Socket("10.0.0.125", 5050)
                 output = PrintWriter(socket!!.getOutputStream(), true)
+                println("Connected to server")
             }
             catch (e: Exception) {
                 e.printStackTrace()
+                println("Connection failed")
             }
         }
     }
@@ -24,6 +26,7 @@ class SocketManager {
         CoroutineScope(Dispatchers.IO).launch {
             try {
                 output?.println(command)
+                println("Command sent: $command")
             } catch (e: Exception) {
                 e.printStackTrace()
             }

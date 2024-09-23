@@ -14,6 +14,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.input.pointer.pointerInput
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.unit.dp
 import com.example.trackpadapp.ui.theme.TrackpadAppTheme
 
 class MainActivity : ComponentActivity() {
@@ -28,6 +29,10 @@ class MainActivity : ComponentActivity() {
                 Trackpad(socketManager)
             }
         }
+    }
+    override fun onDestroy() {
+        super.onDestroy()
+        socketManager.close()
     }
 }
 
@@ -51,12 +56,10 @@ fun Trackpad(socketManager: SocketManager) {
             }
 
     ) {
-        Text("Tap to control the mouse", modifier = Modifier.fillMaxSize())
+        Text("Tap to control the mouse",
+            modifier = Modifier
+                .fillMaxSize()
+                .padding(16.dp)
+        )
     }
 }
-
-//@Preview(showBackground = true)
-//@Composable
-//fun TrackpadPreview() {
-//    Trackpad()
-//}

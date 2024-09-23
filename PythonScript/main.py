@@ -1,5 +1,5 @@
 from socket_handler import setup_server, receive_data
-from mouse_action import move_mouse, left_click, right_click, scroll_up, drag_to
+from mouse_action import mouse_movement, single_click, right_click, scrolling, drag_and_drop
 
 def process_command(command):
     command_parts = command.split()
@@ -7,21 +7,21 @@ def process_command(command):
 
     if action == "move":
         x, y = int(command_parts[1]), int(command_parts[2])
-        move_mouse(x, y)
+        mouse_movement(x, y)
         print(f"Mouse moved to ({x}, {y})")
     elif action == "click":
-        left_click()
+        single_click()
         print("Left click performed")
     elif action == "right_click":
         right_click()
         print("Right click performed")
     elif action == "scroll":
         amount = int(command_parts[1])
-        scroll_up(amount)
+        scrolling(amount)
         print(f"Scrolled up by {amount}")
     elif action == "drag":
         x, y = int(command_parts[1]), int(command_parts[2])
-        drag_to(x, y)
+        drag_and_drop(x, y)
         print(f"Mouse dragged to ({x}, {y})")
     else:
         print(f"Unknown command: {action}")
