@@ -1,6 +1,6 @@
 import socket
 
-def setup_server(host='0.0.0.0', port=9999):
+def setup_server(host='0.0.0.0', port=5050):
     server_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
     server_socket.bind((host, port))
     server_socket.listen(1)
