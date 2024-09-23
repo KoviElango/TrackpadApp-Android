@@ -12,8 +12,10 @@ class SocketManager {
         CoroutineScope(Dispatchers.IO).launch {
             try {
                 socket = Socket("10.0.0.125", 5050)
+                socket!!.soTimeout = 5000
                 output = PrintWriter(socket!!.getOutputStream(), true)
                 println("Connected to server")
+                sendCommand("test_command")
             }
             catch (e: Exception) {
                 e.printStackTrace()
@@ -26,6 +28,7 @@ class SocketManager {
         CoroutineScope(Dispatchers.IO).launch {
             try {
                 output?.println(command)
+                output?.flush()
                 println("Command sent: $command")
             } catch (e: Exception) {
                 e.printStackTrace()

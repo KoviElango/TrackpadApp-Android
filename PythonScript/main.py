@@ -1,17 +1,20 @@
 from socket_handler import setup_server, receive_data
-from mouse_action import mouse_movement, single_click, right_click, scrolling, drag_and_drop
+from mouse_action import mouse_movement, single_click, double_click, right_click, scrolling, drag_and_drop
 
 def process_command(command):
     command_parts = command.split()
     action = command_parts[0]
 
     if action == "move":
-        x, y = int(command_parts[1]), int(command_parts[2])
-        mouse_movement(x, y)
-        print(f"Mouse moved to ({x}, {y})")
+        delta_x, delta_y = int(command_parts[1]), int(command_parts[2])
+        mouse_movement(delta_x, delta_y)
+        print(f"Mouse moved by ({delta_x}, {delta_y})")
     elif action == "click":
         single_click()
         print("Left click performed")
+    elif action == "double_click":
+        double_click()
+        print("Double left click performed")
     elif action == "right_click":
         right_click()
         print("Right click performed")
