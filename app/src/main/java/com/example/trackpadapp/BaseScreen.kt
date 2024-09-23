@@ -43,12 +43,12 @@ fun trackpadInterface(udpManager: UDPManager) {
 
             Box(
                 modifier = Modifier
-                    .weight(0.1f)
+                    .weight(0.12f)
                     .background(Color.White)
                     .fillMaxHeight(),
                 contentAlignment = Alignment.Center
             ){
-            Text(text = "Scroll")
+                ScrollBar(udpManager)
             }
 
         }

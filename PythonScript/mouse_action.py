@@ -17,7 +17,6 @@ def process_command(command):
     action = command_parts[0]
 
     if action == "move":
-        # Use float() to handle decimal values for mouse movement
         delta_x, delta_y = float(command_parts[1]), float(command_parts[2])
         mouse_movement(delta_x, delta_y)
         print(f"Mouse moved by ({delta_x}, {delta_y})")
@@ -29,6 +28,12 @@ def process_command(command):
     elif action == "right_click":
         mouse.press(Button.right)
         mouse.release(Button.right)
+    
+    elif action == "scroll_up":
+        mouse.scroll(0, -1)
+
+    elif action == "scroll_down":
+        mouse.scroll(0, 1)
     else:
         print(f"Unknown command: {action}")
 
