@@ -15,7 +15,7 @@ class MainActivity : ComponentActivity() {
         enableEdgeToEdge()
         udpManager = UDPManager()
         setContent {
-            trackpadInterface(udpManager)
+            TrackpadInterface(udpManager)
         }
     }
 

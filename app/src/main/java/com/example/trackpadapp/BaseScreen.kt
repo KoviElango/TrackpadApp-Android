@@ -1,6 +1,7 @@
 package com.example.trackpadapp
 
 import UDPManager
+import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
@@ -16,57 +17,61 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
 
 @Composable
-fun trackpadInterface(udpManager: UDPManager) {
-    Column(
-        modifier = Modifier
-            .fillMaxSize()
-            .padding(1.dp)
-            .background(Color.Black),
-        verticalArrangement = Arrangement.SpaceBetween
+fun TrackpadInterface(udpManager: UDPManager) {
+    val image1 = painterResource(R.drawable.background)
+
+    Box(
+        modifier = Modifier.fillMaxSize()
     ) {
-        Row(
+        Image(
+            painter = image1,
+            contentDescription = null,
+            contentScale = ContentScale.Crop,
+            modifier = Modifier.fillMaxSize()
+        )
+        Column(
             modifier = Modifier
-                .weight(1f)
-                .fillMaxWidth()
+                .fillMaxSize()
+                .padding(1.dp)
+                .background(Color.DarkGray.copy(alpha = 0.2f)),
+            verticalArrangement = Arrangement.SpaceBetween
         ) {
-            Box(
+            Row(
                 modifier = Modifier
                     .weight(1f)
-                    .fillMaxHeight(),
-                contentAlignment = Alignment.Center
-            ){
-                Trackpad(udpManager)
-            }
+                    .fillMaxWidth()
+            ) {
+                Box(
+                    modifier = Modifier
+                        .weight(1f)
+                        .fillMaxHeight(),
+                    contentAlignment = Alignment.Center
+                ) {
+                    Trackpad(udpManager)
+                }
 
-            Box(
+                Box(
+                    modifier = Modifier
+                        .weight(0.12f)
+                        .background(Color.White.copy(alpha = 0.3f))
+                        .fillMaxHeight(),
+                    contentAlignment = Alignment.Center
+                ) {
+                    ScrollBar(udpManager)
+                }
+
+            }
+            Row(
                 modifier = Modifier
-                    .weight(0.12f)
-                    .background(Color.White)
-                    .fillMaxHeight(),
-                contentAlignment = Alignment.Center
-            ){
-                ScrollBar(udpManager)
-            }
-
-        }
-        Row(
-            modifier = Modifier
-                .fillMaxWidth(),
-            horizontalArrangement = Arrangement.SpaceEvenly
-        ) {
-            Button(onClick = { udpManager.sendCommand("click", "10.0.0.125", 6060) },
-                modifier = Modifier.weight(1f)
+                    .fillMaxWidth(),
+                horizontalArrangement = Arrangement.SpaceEvenly
             ) {
-                Text(text = "L-Click")
-            }
-
-            Button(onClick = { udpManager.sendCommand("right_click", "10.0.0.125", 6060) },
-                modifier = Modifier.weight(1f)
-            ) {
-                Text(text = "R-Click")
+                ButtonRow(udpManager)
             }
         }
     }

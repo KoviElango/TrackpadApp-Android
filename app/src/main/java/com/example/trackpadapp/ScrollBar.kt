@@ -21,7 +21,6 @@ fun ScrollBar(udpManager: UDPManager) {
     Box(
         modifier = Modifier
             .fillMaxSize()
-            .background(Color.Red)
             .pointerInteropFilter { event ->
                 when (event.action) {
                     MotionEvent.ACTION_MOVE -> {
@@ -47,6 +46,5 @@ fun ScrollBar(udpManager: UDPManager) {
             },
         contentAlignment = Alignment.Center
     ) {
-        Text(text = "Scroll")
     }
 }
