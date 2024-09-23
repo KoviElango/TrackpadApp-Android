@@ -37,14 +37,22 @@ class MainActivity : ComponentActivity() {
 
 @Composable
 fun Trackpad(socketManager: SocketManager) {
+    val sensitivityFactor = 3.0f // Increase this for more sensitivity
+
     Box(
         modifier = Modifier
             .fillMaxSize()
             .pointerInput(Unit) {
                 detectDragGestures(
                     onDrag = { change, dragAmount ->
+                        change.consume()
                         val (deltaX, deltaY) = dragAmount
-                        socketManager.sendCommand("move ${deltaX.toInt()} ${deltaY.toInt()}") // Send mouse move command
+
+                        // Amplify the delta values for smoother and more sensitive movement
+                        val adjustedDeltaX = (deltaX * sensitivityFactor).toInt()
+                        val adjustedDeltaY = (deltaY * sensitivityFactor).toInt()
+
+                        socketManager.sendCommand("move $adjustedDeltaX $adjustedDeltaY")
                     },
                     onDragStart = { offset ->
                         println("Drag started at $offset")
@@ -78,3 +86,4 @@ fun Trackpad(socketManager: SocketManager) {
         )
     }
 }
+
