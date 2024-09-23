@@ -5,6 +5,8 @@ import java.net.DatagramPacket
 import java.net.DatagramSocket
 import java.net.InetAddress
 
+//Refer to Doc: https://developer.android.com/reference/java/net/DatagramSocket
+
 class UDPManager {
     private val socket = DatagramSocket()
 
