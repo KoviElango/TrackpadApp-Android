@@ -11,8 +11,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.input.pointer.pointerInteropFilter
 import androidx.compose.ui.unit.dp
 import UDPManager
-import androidx.compose.foundation.background
-import androidx.compose.ui.graphics.Color
+
 
 //This piece leverages MotionEvents: https://developer.android.com/reference/android/view/MotionEvent
 //ACTION_MOVE - Constant for getActionMasked(): A change has happened during a press gesture (between ACTION_DOWN and ACTION_UP).
@@ -23,11 +22,11 @@ fun Trackpad(udpManager: UDPManager) {
     val sensitivityFactor = 1.5f
     var lastX = 0f
     var lastY = 0f
+    var hasMoved = false
 
     Box(
         modifier = Modifier
             .fillMaxSize()
-            .background(Color.Black)
             .pointerInteropFilter { event ->
                 when (event.action) {
                     MotionEvent.ACTION_MOVE -> {
@@ -35,15 +34,22 @@ fun Trackpad(udpManager: UDPManager) {
                         val deltaY = (event.y - lastY) * sensitivityFactor
                         lastX = event.x
                         lastY = event.y
+                        hasMoved = true
                         udpManager.sendCommand("move $deltaX $deltaY", "10.0.0.125", 6060) // Replace with your server IP and port
                         true
                     }
                     MotionEvent.ACTION_DOWN -> {
+                        hasMoved = false
                         lastX = event.x
                         lastY = event.y
                         true
                     }
-                    MotionEvent.ACTION_UP -> true
+                    MotionEvent.ACTION_UP -> {
+                        if (!hasMoved) {
+                            udpManager.sendCommand("click", "10.0.0.125", 6060)
+                        }
+                        true
+                    }
                     else -> false
                 }
             }

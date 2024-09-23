@@ -1,4 +1,4 @@
-from pynput.mouse import Controller
+from pynput.mouse import Controller, Button
 
 # Mouse controller object
 mouse = Controller()
@@ -21,6 +21,14 @@ def process_command(command):
         delta_x, delta_y = float(command_parts[1]), float(command_parts[2])
         mouse_movement(delta_x, delta_y)
         print(f"Mouse moved by ({delta_x}, {delta_y})")
+    
+    elif action == "click":
+        mouse.press(Button.left)
+        mouse.release(Button.left)
+    
+    elif action == "right_click":
+        mouse.press(Button.right)
+        mouse.release(Button.right)
     else:
         print(f"Unknown command: {action}")
 

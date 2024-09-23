@@ -1,6 +1,7 @@
 package com.example.trackpadapp
 
 import UDPManager
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -14,6 +15,7 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 
 @Composable
@@ -21,7 +23,8 @@ fun trackpadInterface(udpManager: UDPManager) {
     Column(
         modifier = Modifier
             .fillMaxSize()
-            .padding(1.dp),
+            .padding(1.dp)
+            .background(Color.Black),
         verticalArrangement = Arrangement.SpaceBetween
     ) {
         Row(
@@ -38,7 +41,13 @@ fun trackpadInterface(udpManager: UDPManager) {
                 Trackpad(udpManager)
             }
 
-            Box(){
+            Box(
+                modifier = Modifier
+                    .weight(0.1f)
+                    .background(Color.White)
+                    .fillMaxHeight(),
+                contentAlignment = Alignment.Center
+            ){
             Text(text = "Scroll")
             }
 
