@@ -23,30 +23,30 @@ fun ButtonRow(udpManager: UDPManager) {
             onClick = { udpManager.sendCommand("click", "10.0.0.125", 6060) },
             modifier = Modifier
                 .weight(1f)
-                .height(150.dp)
+                .height(105.dp)
                 .padding(5.dp),
             shape = RectangleShape,
             colors = ButtonDefaults.buttonColors(
-                containerColor = Color.DarkGray.copy(alpha = transparency),
+                containerColor = Color.Black.copy(alpha = transparency),
                 contentColor = Color.White
             )
         ) {
-            Text(text = "L-Click")
+            Text(text = "L")
         }
 
         Button(
             onClick = { udpManager.sendCommand("right_click", "10.0.0.125", 6060) },
             modifier = Modifier
                 .weight(1f)
-                .height(150.dp)
+                .height(105.dp)
                 .padding(5.dp),
             shape = RectangleShape,
             colors = ButtonDefaults.buttonColors(
-                containerColor = Color.DarkGray.copy(alpha = transparency),
+                containerColor = Color.Black.copy(alpha = transparency),
                 contentColor = Color.White
             )
         ) {
-            Text(text = "R-Click")
+            Text(text = "R")
         }
     }
 }

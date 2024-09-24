@@ -12,6 +12,8 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Button
+import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
@@ -25,7 +27,7 @@ import androidx.compose.ui.unit.dp
 fun TrackpadInterface(udpManager: UDPManager) {
     val image1 = painterResource(R.drawable.background)
 
-    Box(
+    Surface(
         modifier = Modifier.fillMaxSize()
     ) {
         Image(
@@ -58,7 +60,7 @@ fun TrackpadInterface(udpManager: UDPManager) {
                 Box(
                     modifier = Modifier
                         .weight(0.12f)
-                        .background(Color(0xFFFFA500).copy(alpha = 0.3f))
+                        .background(Color(0xFFFF6F00).copy(alpha = 0.3f))
                         .fillMaxHeight(),
                     contentAlignment = Alignment.Center
                 ) {
@@ -66,10 +68,11 @@ fun TrackpadInterface(udpManager: UDPManager) {
                 }
 
             }
-            Row(
+            Surface(
                 modifier = Modifier
                     .fillMaxWidth(),
-                horizontalArrangement = Arrangement.SpaceEvenly
+                tonalElevation = 8.dp,
+                color = MaterialTheme.colorScheme.surface.copy(alpha = 0.08f)
             ) {
                 ButtonRow(udpManager)
             }
