@@ -25,30 +25,30 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 
-@OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun MediaControlToolbar() {
+fun MediaControlToolbar(udpManager: UDPManager) {
     Surface(
         modifier = Modifier
             .fillMaxWidth()
             .padding(16.dp),
         shape = MaterialTheme.shapes.medium,
         tonalElevation = 6.dp,
-        color = MaterialTheme.colorScheme.surface
+        color = Color(0xFFBBDEFB).copy(alpha = 0.5f)
     ) {
         Column(
-            modifier = Modifier.fillMaxWidth(),
-            horizontalAlignment = Alignment.CenterHorizontally
+            modifier = Modifier
+                .fillMaxWidth(),
+            horizontalAlignment = Alignment.CenterHorizontally,
+            verticalArrangement = Arrangement.Center
         ) {
             // First Row of Icons
             Row(
                 modifier = Modifier.padding(vertical = 8.dp),
                 horizontalArrangement = Arrangement.spacedBy(12.dp)
             ) {
-                IconButton(onClick = { /* Handle fullscreen */ }) {
+                IconButton(onClick = { udpManager.sendCommand("fullscreen", "10.0.0.125", 6060) }) {
                     Icon(
                         imageVector = Icons.Outlined.Fullscreen,
                         contentDescription = "Fullscreen",
@@ -56,7 +56,7 @@ fun MediaControlToolbar() {
                         tint = Color.Black // Adjust color as necessary
                     )
                 }
-                IconButton(onClick = { /* Handle previous track */ }) {
+                IconButton(onClick = { udpManager.sendCommand("skip_previous", "10.0.0.125", 6060) }) {
                     Icon(
                         imageVector = Icons.Outlined.SkipPrevious,
                         contentDescription = "Previous",
@@ -64,7 +64,7 @@ fun MediaControlToolbar() {
                         tint = Color.Black
                     )
                 }
-                IconButton(onClick = { /* Handle play/pause */ }) {
+                IconButton(onClick = { udpManager.sendCommand("pause_play", "10.0.0.125", 6060) }) {
                     Icon(
                         imageVector = Icons.Outlined.PlayArrow,
                         contentDescription = "Play",
@@ -72,7 +72,7 @@ fun MediaControlToolbar() {
                         tint = Color.Black
                     )
                 }
-                IconButton(onClick = { /* Handle next track */ }) {
+                IconButton(onClick = { udpManager.sendCommand("skip_next", "10.0.0.125", 6060) }) {
                     Icon(
                         imageVector = Icons.Outlined.SkipNext,
                         contentDescription = "Next",
@@ -80,7 +80,7 @@ fun MediaControlToolbar() {
                         tint = Color.Black
                     )
                 }
-                IconButton(onClick = { /* Handle mute */ }) {
+                IconButton(onClick = { udpManager.sendCommand("mute_unmute", "10.0.0.125", 6060) }) {
                     Icon(
                         imageVector = Icons.Outlined.VolumeOff,
                         contentDescription = "Mute",
@@ -95,7 +95,7 @@ fun MediaControlToolbar() {
                 modifier = Modifier.padding(vertical = 8.dp),
                 horizontalArrangement = Arrangement.spacedBy(12.dp)
             ) {
-                IconButton(onClick = { /* Handle volume up */ }) {
+                IconButton(onClick = { udpManager.sendCommand("volume_up", "10.0.0.125", 6060) }) {
                     Icon(
                         imageVector = Icons.Outlined.VolumeUp,
                         contentDescription = "Volume Up",
@@ -103,7 +103,7 @@ fun MediaControlToolbar() {
                         tint = Color.Black
                     )
                 }
-                IconButton(onClick = { /* Handle volume down */ }) {
+                IconButton(onClick = { udpManager.sendCommand("volume_down", "10.0.0.125", 6060) }) {
                     Icon(
                         imageVector = Icons.Outlined.VolumeDown,
                         contentDescription = "Volume Down",
@@ -111,7 +111,7 @@ fun MediaControlToolbar() {
                         tint = Color.Black
                     )
                 }
-                IconButton(onClick = { /* Handle replay */ }) {
+                IconButton(onClick = { udpManager.sendCommand("rewind", "10.0.0.125", 6060) }) {
                     Icon(
                         imageVector = Icons.Outlined.Replay,
                         contentDescription = "Replay",
@@ -122,10 +122,4 @@ fun MediaControlToolbar() {
             }
         }
     }
-}
-
-@Preview(showBackground = true)
-@Composable
-fun MediaControlPreview() {
-    MediaControlToolbar()
 }
