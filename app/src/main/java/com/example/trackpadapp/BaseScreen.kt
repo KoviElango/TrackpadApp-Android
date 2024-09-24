@@ -58,7 +58,7 @@ fun TrackpadInterface(udpManager: UDPManager) {
                 Box(
                     modifier = Modifier
                         .weight(0.12f)
-                        .background(Color.White.copy(alpha = 0.3f))
+                        .background(Color(0xFFFFA500).copy(alpha = 0.3f))
                         .fillMaxHeight(),
                     contentAlignment = Alignment.Center
                 ) {

@@ -11,6 +11,8 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.input.pointer.pointerInteropFilter
 import androidx.compose.ui.unit.dp
 import UDPManager
+import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.ui.Alignment
 
 @OptIn(ExperimentalComposeUiApi::class)
 @Composable
@@ -91,10 +93,6 @@ fun Trackpad(udpManager: UDPManager) {
                 }
             }
     ) {
-        Text(
-            text = "Use the trackpad to move the mouse or drag with triple tap.",
-            modifier = Modifier.padding(16.dp)
-        )
     }
 }
 
