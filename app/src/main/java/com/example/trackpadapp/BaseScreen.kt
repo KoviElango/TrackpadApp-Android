@@ -73,30 +73,31 @@ fun TrackpadInterface(udpManager: UDPManager) {
                             modifier = Modifier.size(48.dp)
                         )
                     }
-                    IconButton(
-                        onClick = { /* Handle button click */ },
-                        modifier = Modifier
-                            .align(Alignment.CenterHorizontally) // Align the button horizontally to the left
-                    ) {
-                        Icon(
-                            imageVector = Icons.Outlined.Circle,
-                            contentDescription = "Media Control",
-                            tint = Color(0xFF276972),
-                            modifier = Modifier.size(48.dp)
-                        )
-                    }
-                    IconButton(
-                        onClick = { /* Handle button click */ },
-                        modifier = Modifier
-                            .align(Alignment.CenterHorizontally) // Align the button horizontally to the left
-                    ) {
-                        Icon(
-                            imageVector = Icons.Outlined.Circle,
-                            contentDescription = "Media Control",
-                            tint = Color(0xFF276972),
-                            modifier = Modifier.size(48.dp)
-                        )
-                    }
+//New features: QWERTY-Keyboard; Networks-tab
+//                    IconButton(
+//                        onClick = { /* Handle button click */ },
+//                        modifier = Modifier
+//                            .align(Alignment.CenterHorizontally) // Align the button horizontally to the left
+//                    ) {
+//                        Icon(
+//                            imageVector = Icons.Outlined.Circle,
+//                            contentDescription = "Media Control",
+//                            tint = Color(0xFF276972),
+//                            modifier = Modifier.size(48.dp)
+//                        )
+//                    }
+//                    IconButton(
+//                        onClick = { /* Handle button click */ },
+//                        modifier = Modifier
+//                            .align(Alignment.CenterHorizontally) // Align the button horizontally to the left
+//                    ) {
+//                        Icon(
+//                            imageVector = Icons.Outlined.Circle,
+//                            contentDescription = "Media Control",
+//                            tint = Color(0xFF276972),
+//                            modifier = Modifier.size(48.dp)
+//                        )
+//                    }
 
                     Spacer(modifier = Modifier.weight(3f))
                 }
@@ -131,4 +132,5 @@ fun TrackpadInterface(udpManager: UDPManager) {
         }
     }
 }
+
 
