@@ -1,4 +1,4 @@
-# Remote Trackpad App
+# My Trackpad (Android - Python)
 
 ## Overview
 The **Remote Trackpad App** is an Android application designed to allow users to control their computer remotely via a trackpad interface. The app communicates with a server-side Python program that handles mouse movement and other commands using UDP. This project leverages Android Jetpack Compose for the UI and includes features such as media control, a virtual keyboard, and shortcuts.
