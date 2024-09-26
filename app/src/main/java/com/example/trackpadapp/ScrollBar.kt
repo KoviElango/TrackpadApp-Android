@@ -26,9 +26,9 @@ fun ScrollBar(udpManager: UDPManager) {
 
                         // If deltaY is positive, it's a scroll down, otherwise it's a scroll up
                         if (deltaY < 0) {
-                            udpManager.sendCommand("scroll_up", "10.0.0.125", 6060)
+                            udpManager.sendCommand("scroll_up")
                         } else if (deltaY > 0) {
-                            udpManager.sendCommand("scroll_down", "10.0.0.125", 6060)
+                            udpManager.sendCommand("scroll_down")
                         }
                         true
                     }

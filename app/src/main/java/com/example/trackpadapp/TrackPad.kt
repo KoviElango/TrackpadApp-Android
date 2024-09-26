@@ -32,7 +32,7 @@ fun Trackpad(udpManager: UDPManager) {
                         if (isDragging) {
                             val deltaX = (event.x - lastX) * sensitivityFactor
                             val deltaY = (event.y - lastY) * sensitivityFactor
-                            udpManager.sendCommand("drag_move $deltaX $deltaY", "10.0.0.125", 6060)
+                            udpManager.sendCommand("drag_move $deltaX $deltaY")
                             lastX = event.x
                             lastY = event.y
                         } else {
@@ -41,7 +41,7 @@ fun Trackpad(udpManager: UDPManager) {
                             lastX = event.x
                             lastY = event.y
                             hasMoved = true
-                            udpManager.sendCommand("move $deltaX $deltaY", "10.0.0.125", 6060)
+                            udpManager.sendCommand("move $deltaX $deltaY")
                         }
                         true
                     }
@@ -61,11 +61,11 @@ fun Trackpad(udpManager: UDPManager) {
                             // Triple tap detected, initiate drag
                             isDragging = true
                             isLocked = true
-                            udpManager.sendCommand("drag_start", "10.0.0.125", 6060)
+                            udpManager.sendCommand("drag_start")
                             tapCount = 0 // Reset the tap count after drag start
                         } else if (isDragging) {
                             // Handle tap to drop the dragged item
-                            udpManager.sendCommand("end_drag", "10.0.0.125", 6060)
+                            udpManager.sendCommand("end_drag")
                             isLocked = false
                             isDragging = false
                         }
@@ -79,7 +79,7 @@ fun Trackpad(udpManager: UDPManager) {
                     MotionEvent.ACTION_UP -> {
                         // Handle regular click if no movement has happened
                         if (!hasMoved && !isDragging) {
-                            udpManager.sendCommand("click", "10.0.0.125", 6060)
+                            udpManager.sendCommand("click")
                         }
                         true
                     }

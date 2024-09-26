@@ -133,7 +133,7 @@ fun TrackpadInterface(udpManager: UDPManager) {
                 modifier = Modifier
                     .fillMaxWidth(),
                 tonalElevation = 8.dp,
-                color = MaterialTheme.colorScheme.surface.copy(alpha = 0.08f)
+                color = MaterialTheme.colorScheme.surface.copy(alpha = 0.05f)
             ) {
                 ButtonRow(udpManager)
             }

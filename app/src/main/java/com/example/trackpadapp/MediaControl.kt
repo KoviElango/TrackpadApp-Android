@@ -47,7 +47,7 @@ fun MediaControlToolbar(udpManager: UDPManager) {
                 modifier = Modifier.padding(vertical = 8.dp),
                 horizontalArrangement = Arrangement.spacedBy(12.dp)
             ) {
-                IconButton(onClick = { udpManager.sendCommand("fullscreen", "10.0.0.125", 6060) }) {
+                IconButton(onClick = { udpManager.sendCommand("fullscreen") }) {
                     Icon(
                         imageVector = Icons.Outlined.Fullscreen,
                         contentDescription = "Fullscreen",
@@ -55,7 +55,7 @@ fun MediaControlToolbar(udpManager: UDPManager) {
                         tint = Color.Black // Adjust color as necessary
                     )
                 }
-                IconButton(onClick = { udpManager.sendCommand("skip_previous", "10.0.0.125", 6060) }) {
+                IconButton(onClick = { udpManager.sendCommand("skip_previous") }) {
                     Icon(
                         imageVector = Icons.Outlined.SkipPrevious,
                         contentDescription = "Previous",
@@ -63,7 +63,7 @@ fun MediaControlToolbar(udpManager: UDPManager) {
                         tint = Color.Black
                     )
                 }
-                IconButton(onClick = { udpManager.sendCommand("pause_play", "10.0.0.125", 6060) }) {
+                IconButton(onClick = { udpManager.sendCommand("pause_play") }) {
                     Icon(
                         imageVector = Icons.Outlined.PlayArrow,
                         contentDescription = "Play",
@@ -71,7 +71,7 @@ fun MediaControlToolbar(udpManager: UDPManager) {
                         tint = Color.Black
                     )
                 }
-                IconButton(onClick = { udpManager.sendCommand("skip_next", "10.0.0.125", 6060) }) {
+                IconButton(onClick = { udpManager.sendCommand("skip_next") }) {
                     Icon(
                         imageVector = Icons.Outlined.SkipNext,
                         contentDescription = "Next",
@@ -79,7 +79,7 @@ fun MediaControlToolbar(udpManager: UDPManager) {
                         tint = Color.Black
                     )
                 }
-                IconButton(onClick = { udpManager.sendCommand("mute_unmute", "10.0.0.125", 6060) }) {
+                IconButton(onClick = { udpManager.sendCommand("mute_unmute") }) {
                     Icon(
                         imageVector = Icons.Outlined.VolumeOff,
                         contentDescription = "Mute",
@@ -94,15 +94,8 @@ fun MediaControlToolbar(udpManager: UDPManager) {
                 modifier = Modifier.padding(vertical = 8.dp),
                 horizontalArrangement = Arrangement.spacedBy(12.dp)
             ) {
-                IconButton(onClick = { udpManager.sendCommand("volume_up", "10.0.0.125", 6060) }) {
-                    Icon(
-                        imageVector = Icons.Outlined.VolumeUp,
-                        contentDescription = "Volume Up",
-                        modifier = Modifier.size(24.dp),
-                        tint = Color.Black
-                    )
-                }
-                IconButton(onClick = { udpManager.sendCommand("volume_down", "10.0.0.125", 6060) }) {
+
+                IconButton(onClick = { udpManager.sendCommand("volume_down") }) {
                     Icon(
                         imageVector = Icons.Outlined.VolumeDown,
                         contentDescription = "Volume Down",
@@ -110,7 +103,15 @@ fun MediaControlToolbar(udpManager: UDPManager) {
                         tint = Color.Black
                     )
                 }
-                IconButton(onClick = { udpManager.sendCommand("rewind", "10.0.0.125", 6060) }) {
+                IconButton(onClick = { udpManager.sendCommand("volume_up") }) {
+                    Icon(
+                        imageVector = Icons.Outlined.VolumeUp,
+                        contentDescription = "Volume Up",
+                        modifier = Modifier.size(24.dp),
+                        tint = Color.Black
+                    )
+                }
+                IconButton(onClick = { udpManager.sendCommand("rewind") }) {
                     Icon(
                         imageVector = Icons.Outlined.Replay,
                         contentDescription = "Replay",

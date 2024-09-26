@@ -11,7 +11,11 @@ class UDPManager {
     private val socket = DatagramSocket()
 
     // Use a coroutine to send the command asynchronously
-    fun sendCommand(command: String, serverIP: String, port: Int) {
+    fun sendCommand(command: String) {
+
+        val serverIP = "10.0.0.125"
+        val port = 6060
+        // Use a coroutine to send the command asynchronously
         CoroutineScope(Dispatchers.IO).launch {
             try {
                 val address = InetAddress.getByName(serverIP)

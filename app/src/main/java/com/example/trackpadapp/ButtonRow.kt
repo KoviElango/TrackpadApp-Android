@@ -20,7 +20,7 @@ fun ButtonRow(udpManager: UDPManager) {
     ) {
         val transparency = 0.4f
         Button(
-            onClick = { udpManager.sendCommand("click", "10.0.0.125", 6060) },
+            onClick = { udpManager.sendCommand("click") },
             modifier = Modifier
                 .weight(1f)
                 .height(105.dp)
@@ -35,7 +35,7 @@ fun ButtonRow(udpManager: UDPManager) {
         }
 
         Button(
-            onClick = { udpManager.sendCommand("right_click", "10.0.0.125", 6060) },
+            onClick = { udpManager.sendCommand("right_click") },
             modifier = Modifier
                 .weight(1f)
                 .height(105.dp)
