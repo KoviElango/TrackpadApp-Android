@@ -39,6 +39,7 @@ fun TrackpadInterface(udpManager: UDPManager) {
     val image1 = painterResource(R.drawable.background)
     var showMediaControl by remember { mutableStateOf(false) }
     var showKeyboardShortcuts by remember { mutableStateOf(false) }
+    var showNetwork by remember { mutableStateOf(false) }
 
     Surface(
         modifier = Modifier.fillMaxSize()
@@ -64,11 +65,11 @@ fun TrackpadInterface(udpManager: UDPManager) {
                 Column(
                     modifier = Modifier
                         .fillMaxHeight()
-                        .padding(2.dp)
+                        .padding(8.dp)
                         .weight(0.12f),
                     verticalArrangement = Arrangement.Center
                 ) {
-                    Spacer(modifier = Modifier.weight(1f))
+                    Spacer(modifier = Modifier.weight(0.8f))
 
                     IconButton(
                         onClick = { showMediaControl = true },
@@ -95,20 +96,20 @@ fun TrackpadInterface(udpManager: UDPManager) {
                             modifier = Modifier.size(48.dp)
                         )
                     }
-//                    IconButton(
-//                        onClick = { /* Handle button click */ },
-//                        modifier = Modifier
-//                            .align(Alignment.CenterHorizontally) // Align the button horizontally to the left
-//                    ) {
-//                        Icon(
-//                            imageVector = Icons.Outlined.Circle,
-//                            contentDescription = "Media Control",
-//                            tint = Color(0xFF276972),
-//                            modifier = Modifier.size(48.dp)
-//                        )
-//                    }
+                    IconButton(
+                        onClick = { showNetwork = true },
+                        modifier = Modifier
+                            .align(Alignment.CenterHorizontally)
+                    ) {
+                        Icon(
+                            imageVector = Icons.Outlined.Circle,
+                            contentDescription = "Network Settings",
+                            tint = Color(0xFF276972),
+                            modifier = Modifier.size(48.dp)
+                        )
+                    }
 
-                    Spacer(modifier = Modifier.weight(3f))
+                    Spacer(modifier = Modifier.weight(1.5f))
                 }
                 Box(
                     modifier = Modifier
@@ -154,6 +155,13 @@ fun TrackpadInterface(udpManager: UDPManager) {
                 content = { KeyboardShortcutsToolbar(udpManager) },
             )
     }
+        if (showNetwork) {
+            AlertDialog(
+                onDismissRequest = { showNetwork = false },
+                content = { NetworkSettings(udpManager) },
+            )
+        }
+
 
     }
 }

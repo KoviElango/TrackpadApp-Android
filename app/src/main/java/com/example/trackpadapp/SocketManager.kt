@@ -9,16 +9,20 @@ import java.net.InetAddress
 
 class UDPManager {
     private val socket = DatagramSocket()
+    var serverIPinput = "10.0.0.125"
+
+    fun setServerIP(ip: String) {
+        serverIPinput = ip
+    }
 
     // Use a coroutine to send the command asynchronously
     fun sendCommand(command: String) {
 
-        val serverIP = "10.0.0.125"
         val port = 6060
         // Use a coroutine to send the command asynchronously
         CoroutineScope(Dispatchers.IO).launch {
             try {
-                val address = InetAddress.getByName(serverIP)
+                val address = InetAddress.getByName(serverIPinput)
                 val data = command.toByteArray()
                 val packet = DatagramPacket(data, data.size, address, port)
                 socket.send(packet)
