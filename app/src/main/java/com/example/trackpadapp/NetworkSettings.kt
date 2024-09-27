@@ -41,38 +41,39 @@ fun NetworkSettings(udpManager: UDPManager) {
         tonalElevation = 6.dp,
         color = Color(0xFF276972).copy(alpha = 0.5f)
     ) {
-    Column(modifier = Modifier.padding(8.dp),
-        horizontalAlignment = androidx.compose.ui.Alignment.CenterHorizontally
-    ) {
-
-        OutlinedTextField(
-            value = ipAddress,
-            onValueChange = { ipAddress = it },
-            label = { Text("Enter PC's IP Address") },
-            textStyle = TextStyle(color = Color.White),
-            modifier = Modifier.fillMaxWidth(),
-            keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Number),
-            colors = TextFieldDefaults.outlinedTextFieldColors(
-                focusedBorderColor = Color.White,
-                unfocusedBorderColor = Color.Gray,
-                focusedLabelColor = Color.White,
-                unfocusedLabelColor = Color.Gray
-            )
-        )
-        Spacer(modifier = Modifier.size(15.dp))
-
-        FloatingActionButton(
-            onClick = { udpManager.setServerIP(ipAddress) },
-            containerColor = Color(0xB0FF7823),
+        Column(
+            modifier = Modifier.padding(8.dp),
+            horizontalAlignment = androidx.compose.ui.Alignment.CenterHorizontally
         ) {
-            Icon(
-                imageVector = Icons.Outlined.Upload,
-                contentDescription = "IP address",
-                modifier = Modifier.size(15.dp),
-                tint = Color.White
-            )
-        }
 
-    }
+            OutlinedTextField(
+                value = ipAddress,
+                onValueChange = { ipAddress = it },
+                label = { Text("Enter PC's IP Address") },
+                textStyle = TextStyle(color = Color.White),
+                modifier = Modifier.fillMaxWidth(),
+                keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Number),
+                colors = TextFieldDefaults.outlinedTextFieldColors(
+                    focusedBorderColor = Color.White,
+                    unfocusedBorderColor = Color.Gray,
+                    focusedLabelColor = Color.White,
+                    unfocusedLabelColor = Color.Gray
+                )
+            )
+            Spacer(modifier = Modifier.size(15.dp))
+
+            FloatingActionButton(
+                onClick = { udpManager.setServerIP(ipAddress) },
+                containerColor = Color(0xB0FF7823),
+            ) {
+                Icon(
+                    imageVector = Icons.Outlined.Upload,
+                    contentDescription = "IP address",
+                    modifier = Modifier.size(15.dp),
+                    tint = Color.White
+                )
+            }
+
         }
+    }
 }
