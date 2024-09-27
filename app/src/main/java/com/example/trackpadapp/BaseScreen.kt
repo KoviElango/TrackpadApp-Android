@@ -37,7 +37,8 @@ import androidx.compose.ui.unit.dp
 @Composable
 fun TrackpadInterface(udpManager: UDPManager) {
     val image1 = painterResource(R.drawable.background)
-    var showDialog by remember { mutableStateOf(false) }
+    var showMediaControl by remember { mutableStateOf(false) }
+    var showKeyboardShortcuts by remember { mutableStateOf(false) }
 
     Surface(
         modifier = Modifier.fillMaxSize()
@@ -66,13 +67,13 @@ fun TrackpadInterface(udpManager: UDPManager) {
                         .padding(2.dp)
                         .weight(0.12f),
                     verticalArrangement = Arrangement.Center
-                ){
+                ) {
                     Spacer(modifier = Modifier.weight(1f))
 
                     IconButton(
-                        onClick = { showDialog = true },
+                        onClick = { showMediaControl = true },
                         modifier = Modifier
-                            .align(Alignment.CenterHorizontally) // Align the button horizontally to the left
+                            .align(Alignment.CenterHorizontally)
                     ) {
                         Icon(
                             imageVector = Icons.Outlined.Circle,
@@ -81,19 +82,19 @@ fun TrackpadInterface(udpManager: UDPManager) {
                             modifier = Modifier.size(48.dp)
                         )
                     }
-//New features: QWERTY-Keyboard; Networks-tab
-//                    IconButton(
-//                        onClick = { /* Handle button click */ },
-//                        modifier = Modifier
-//                            .align(Alignment.CenterHorizontally) // Align the button horizontally to the left
-//                    ) {
-//                        Icon(
-//                            imageVector = Icons.Outlined.Circle,
-//                            contentDescription = "Media Control",
-//                            tint = Color(0xFF276972),
-//                            modifier = Modifier.size(48.dp)
-//                        )
-//                    }
+
+                    IconButton(
+                        onClick = { showKeyboardShortcuts = true },
+                        modifier = Modifier
+                            .align(Alignment.CenterHorizontally)
+                    ) {
+                        Icon(
+                            imageVector = Icons.Outlined.Circle,
+                            contentDescription = "Keyboard Shortcuts Control",
+                            tint = Color(0xFF276972),
+                            modifier = Modifier.size(48.dp)
+                        )
+                    }
 //                    IconButton(
 //                        onClick = { /* Handle button click */ },
 //                        modifier = Modifier
@@ -139,12 +140,20 @@ fun TrackpadInterface(udpManager: UDPManager) {
             }
         }
 
-        if (showDialog) {
+        if (showMediaControl) {
             AlertDialog(
-                onDismissRequest = { showDialog = false },
+                onDismissRequest = { showMediaControl = false },
                 content = { MediaControlToolbar(udpManager) },
             )
         }
+
+
+        if (showKeyboardShortcuts) {
+            AlertDialog(
+                onDismissRequest = { showKeyboardShortcuts = false },
+                content = { KeyboardShortcutsToolbar() },
+            )
+    }
 
     }
 }
