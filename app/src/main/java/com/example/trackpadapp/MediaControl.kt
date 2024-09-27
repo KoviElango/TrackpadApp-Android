@@ -55,7 +55,7 @@ fun MediaControlToolbar(udpManager: UDPManager) {
                         tint = Color.Black // Adjust color as necessary
                     )
                 }
-                IconButton(onClick = { udpManager.sendCommand("skip_previous") }) {
+                IconButton(onClick = { udpManager.sendCommand("previous_track") }) {
                     Icon(
                         imageVector = Icons.Outlined.SkipPrevious,
                         contentDescription = "Previous",
@@ -71,7 +71,7 @@ fun MediaControlToolbar(udpManager: UDPManager) {
                         tint = Color.Black
                     )
                 }
-                IconButton(onClick = { udpManager.sendCommand("skip_next") }) {
+                IconButton(onClick = { udpManager.sendCommand("next_track") }) {
                     Icon(
                         imageVector = Icons.Outlined.SkipNext,
                         contentDescription = "Next",

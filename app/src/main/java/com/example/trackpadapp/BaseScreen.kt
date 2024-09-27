@@ -151,7 +151,7 @@ fun TrackpadInterface(udpManager: UDPManager) {
         if (showKeyboardShortcuts) {
             AlertDialog(
                 onDismissRequest = { showKeyboardShortcuts = false },
-                content = { KeyboardShortcutsToolbar() },
+                content = { KeyboardShortcutsToolbar(udpManager) },
             )
     }
 
