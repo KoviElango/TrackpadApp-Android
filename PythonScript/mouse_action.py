@@ -46,8 +46,8 @@ def scroll_down():
 
 # Media Player Action
 def full_screen():
-    keyboard.press(Key.F)
-    keyboard.release(Key.F)
+    keyboard.press('f')
+    keyboard.release('f')
     print("F (Full Screen) pressed")
 
 def volume_up():
